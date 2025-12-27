@@ -52,7 +52,14 @@ class ViewController: UIViewController {
     }
 
     @IBAction func keyPressed(_ sender: UIButton) {
+        sender.alpha = 0.5
         let keyLabel = sender.titleLabel?.text
         SoundPlayer.shared.playSound(named: keyLabel!)
+        
+        //Code should execute after 0.2 second delay.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            //Bring's sender's opacity back up to fully opaque.
+            sender.alpha = 1.0
+        }
     }
 }
